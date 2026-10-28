@@ -1,0 +1,114 @@
+<!--
+  Documentation for (gitgraph), written like Digs' own user guide (guide.html):
+  a section per procedure headed <h3 id="name"><code>name</code></h3>, its call
+  in <pre class="signature">, and runnable programs in <pre class="example">
+  (escape < > & inside them). Links to #ids point within this file.
+  It sits next to gitgraph.sld, the library it documents.
+-->
+<section>
+  <h2 id="git-graphs">Git graphs</h2>
+  <p>
+    <code>git-graph</code> draws the history of a git repository: branches as coloured lanes, commits as
+    dots along them, and lines where branches leave and merge. Like Mermaid's <code>gitGraph</code>, you
+    describe it as a list of events in the order they happen. It starts on <code>main</code>; each
+    <a href="#commit"><code>commit</code></a> goes on the branch that's checked out, one column after the
+    one before.
+  </p>
+<pre class="example"><code>(import (gitgraph))
+
+(git-graph (pt 70 40)
+  (commit "init")
+  (commit "setup")
+  (branch 'develop)
+  (commit "login" #:tag "beta")
+  (checkout 'main)
+  (commit "hotfix" #:type 'highlight)
+  (checkout 'develop)
+  (commit "signup")
+  (checkout 'main)
+  (merge 'develop #:tag "v1.0")
+  (commit "docs"))</code></pre>
+  <p>
+    The events are plain lists, <code>(commit "init")</code> is the same as <code>'(commit "init")</code>,
+    so they can be quoted, built with <code>map</code> or kept in a variable. Lists of events are
+    flattened, so a helper can return several. If your program defines its own <code>merge</code> or
+    <code>commit</code>, which hides the library's, quote the events instead, as with
+    <code>'(commit "a")</code> below.
+  </p>
+<pre class="example"><code>(import (gitgraph))
+
+(define (feature name . messages)
+  (list (branch name)
+        (map commit messages)
+        (checkout 'main)
+        (merge name)))
+
+(git-graph (pt 30 30)
+  '(commit "a")
+  (feature 'search "index" "query")
+  (feature 'export "csv")
+  #:direction 'down #:gap 36)</code></pre>
+
+  <h3 id="git-graph"><code>git-graph</code></h3>
+<pre class="signature"><code>(git-graph origin event … #:gap 50 #:lane-gap 50 #:direction 'right|'down #:main "main" #:colors (list color …))</code></pre>
+  <p>
+    Draws the events as one <code>group</code>, with the first commit at the point <code>origin</code>.
+    <code>#:gap</code> is the distance from one commit to the next and <code>#:lane-gap</code> the distance
+    between lanes. With <code>#:direction 'right</code> (the default) time runs left to right, branch names
+    sit at the start of their lanes, labels go below commits and tags above. With <code>'down</code> it runs
+    top to bottom, like <code>git log --graph</code>, and labels line up to the right of every lane.
+    <code>#:main</code> names the starting branch. Each new branch takes the next colour from
+    <code>#:colors</code>, starting again when they run out.
+  </p>
+<pre class="example"><code>(import (gitgraph))
+
+(git-graph (pt 90 30)
+  (commit) (commit)
+  (branch "release/2.0")
+  (commit "rc1" #:tag "2.0-rc1")
+  (checkout "trunk")
+  (commit)
+  #:main "trunk" #:gap 40 #:lane-gap 44
+  #:colors (list "#495057" "#c2255c"))</code></pre>
+  <p class="on-canvas">
+    <strong>On the canvas:</strong> dragging any part moves the whole graph by changing the numbers in
+    <code>origin</code>. Double-click a commit label, tag or branch name written as a string to edit it. The
+    <strong>Git graph</strong> tool (<kbd>H</kbd>) drags out a small graph to start from.
+  </p>
+
+  <h3 id="commit"><code>commit</code></h3>
+<pre class="signature"><code>(commit label #:tag tag #:type 'normal|'highlight|'reverse)</code></pre>
+  <p>
+    A commit on the checked-out branch. The label is optional. <code>#:tag</code> adds a tag next to it;
+    <code>#:type 'highlight</code> draws it as a square and <code>'reverse</code> crosses it out, for a
+    revert.
+  </p>
+
+  <h3 id="branch"><code>branch</code></h3>
+<pre class="signature"><code>(branch name #:color color)</code></pre>
+  <p>
+    Starts a branch at the checked-out branch's last commit, on a new lane, and checks it out. Names are
+    symbols (<code>'develop</code>) or strings (<code>"release/2.0"</code>, for names with a slash).
+    <code>#:color</code> overrides its colour from <code>#:colors</code>.
+  </p>
+
+  <h3 id="checkout"><code>checkout</code></h3>
+<pre class="signature"><code>(checkout name)</code></pre>
+  <p>Switches to a branch, so the next commit goes on it.</p>
+
+  <h3 id="merge"><code>merge</code></h3>
+<pre class="signature"><code>(merge name label #:tag tag #:type type)</code></pre>
+  <p>
+    A merge commit on the checked-out branch, joined to the last commit of branch <code>name</code>, drawn
+    as a ring. It takes the same label and options as <a href="#commit"><code>commit</code></a>. The merged
+    branch stays where it was, so it can carry on and be merged again.
+  </p>
+<pre class="example"><code>(import (gitgraph))
+
+(git-graph (pt 80 30)
+  (commit)
+  (branch 'develop) (commit) (commit)
+  (checkout 'main) (merge 'develop "merge 1")
+  (checkout 'develop) (commit "revert" #:type 'reverse)
+  (checkout 'main) (merge 'develop "merge 2" #:tag "v2"))</code></pre>
+</section>

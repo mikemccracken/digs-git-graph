@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+<rect width="300" height="300" fill="#ffffff"/>
+<g>
+<g stroke="#1c7ed6" stroke-width="1" stroke-dasharray="2 5" opacity="0.5">
+<line x1="50" y1="70" x2="50" y2="286"/>
+</g>
+<rect x="30.6" y="37" width="38.8" height="18" rx="4" fill="#1c7ed6"/>
+<text x="50" y="49.6" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">main</text>
+<g stroke="#2b8a3e" stroke-width="1" stroke-dasharray="2 5" opacity="0.5">
+<line x1="100" y1="70" x2="100" y2="286"/>
+</g>
+<rect x="73.4" y="15" width="53.199999999999996" height="18" rx="4" fill="#2b8a3e"/>
+<text x="100" y="27.6" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">search</text>
+<g stroke="#e8590c" stroke-width="1" stroke-dasharray="2 5" opacity="0.5">
+<line x1="150" y1="70" x2="150" y2="286"/>
+</g>
+<rect x="123.4" y="37" width="53.199999999999996" height="18" rx="4" fill="#e8590c"/>
+<text x="150" y="49.6" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">export</text>
+<g fill="none" stroke="#2b8a3e" stroke-width="3">
+<path d="M 50 70 C 50 88 100 88 100 106"/>
+</g>
+<g fill="none" stroke="#2b8a3e" stroke-width="3">
+<path d="M 100 106 L 100 142"/>
+</g>
+<g fill="none" stroke="#2b8a3e" stroke-width="3">
+<path d="M 100 142 C 100 160 50 160 50 178"/>
+</g>
+<g fill="none" stroke="#1c7ed6" stroke-width="3">
+<path d="M 50 70 L 50 178"/>
+</g>
+<g fill="none" stroke="#e8590c" stroke-width="3">
+<path d="M 50 178 C 50 196 150 196 150 214"/>
+</g>
+<g fill="none" stroke="#e8590c" stroke-width="3">
+<path d="M 150 214 C 150 232 50 232 50 250"/>
+</g>
+<g fill="none" stroke="#1c7ed6" stroke-width="3">
+<path d="M 50 178 L 50 250"/>
+</g>
+<g fill="none" stroke="#1c7ed6" stroke-width="3">
+<path d="M 50 250 L 50 286"/>
+</g>
+<circle cx="50" cy="70" r="8" fill="#1c7ed6" stroke="white" stroke-width="2"/>
+<circle cx="100" cy="106" r="8" fill="#2b8a3e" stroke="white" stroke-width="2"/>
+<circle cx="100" cy="142" r="8" fill="#2b8a3e" stroke="white" stroke-width="2"/>
+<circle cx="50" cy="178" r="6" fill="white" stroke="#1c7ed6" stroke-width="4"/>
+<circle cx="150" cy="214" r="8" fill="#e8590c" stroke="white" stroke-width="2"/>
+<circle cx="50" cy="250" r="6" fill="white" stroke="#1c7ed6" stroke-width="4"/>
+<circle cx="50" cy="286" r="8" fill="#1c7ed6" stroke="white" stroke-width="2"/>
+<text x="174" y="74" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="11" text-anchor="start" fill="#495057" stroke="white" stroke-width="3" paint-order="stroke">start</text>
+<text x="174" y="110" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="11" text-anchor="start" fill="#495057" stroke="white" stroke-width="3" paint-order="stroke">index</text>
+<text x="174" y="146" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="11" text-anchor="start" fill="#495057" stroke="white" stroke-width="3" paint-order="stroke">query</text>
+<text x="174" y="218" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="11" text-anchor="start" fill="#495057" stroke="white" stroke-width="3" paint-order="stroke">csv</text>
+<text x="174" y="290" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="11" text-anchor="start" fill="#495057" stroke="white" stroke-width="3" paint-order="stroke">release</text>
+<rect x="227.2" y="278" width="22" height="16" rx="4" fill="#fff3bf"/>
+<text x="232.2" y="289" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif" font-size="10" text-anchor="start" font-weight="bold" fill="#664d03">v2</text>
+</g>
+</svg>

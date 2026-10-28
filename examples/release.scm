@@ -1,0 +1,15 @@
+(import (gitgraph))
+
+(diagram 520 180
+  (git-graph (pt 90 70)
+    (commit "init")
+    (commit "setup")
+    (branch 'develop)
+    (commit "login" #:tag "beta")
+    (checkout 'main)
+    (commit "hotfix" #:type 'highlight)
+    (checkout 'develop)
+    (commit "signup")
+    (checkout 'main)
+    (merge 'develop #:tag "v1.0")
+    (commit "docs")))
